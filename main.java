@@ -50,18 +50,33 @@ public class main
     }
     
     public static ArrayList<Integer> bigInt (ArrayList<Integer> n, ArrayList<Integer> k){
+
+        if (n.size() > k.size()){
+            for (int i = k.size(); i < n.size(); i++){
+                k.add(0, 0);
+            }
+        } else if (n.size() < k.size()){
+            for (int i = n.size(); i < k.size(); i++){
+                n.add(0, 0);
+            }
+        }
+
+        /*
+        System.out.println("K: " + k);
+        System.out.println("N: " + n);
+        */
+
         ArrayList<Integer> list = new ArrayList();
         for (int i = 0; i < n.size(); i++){
             if (n.get(i) + k.get(i) < 10){
-                    list.add(n.get(i) + k.get(i));
+                list.add(n.get(i) + k.get(i));
             } else {
                 String x = Integer.toString(n.get(i) + k.get(i));
                 int first = Integer.parseInt(x.substring(x.length()-1));
-                list.add(1);
+                list.set(i-1, list.get(i-1)+1);
                 list.add(first);
             }
         }
-        
         return list;
     }
 }
